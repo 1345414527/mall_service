@@ -15,7 +15,6 @@ import top.codekiller.mall.service.user.UserUpdateService;
 import top.codekiller.mall.utils.ControllerUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.util.Map;
 
 /**

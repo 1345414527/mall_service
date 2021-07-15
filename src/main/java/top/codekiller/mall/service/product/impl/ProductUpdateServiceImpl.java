@@ -49,11 +49,14 @@ public class ProductUpdateServiceImpl implements ProductUpdateService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateProduct(Product product) {
+
         //进行数据修正
         product.setPrice(Math.abs(product.getPrice()));
         product.setNum(Math.abs(product.getNum()));
         product.setId(Long.valueOf(product.getId_()).longValue());
-
+        //获取数据
+        Product old = this.productMapper.selectById(product.getId());
+        product.setVersion(old.getVersion());
         return this.productMapper.updateById(product);
     }
 }

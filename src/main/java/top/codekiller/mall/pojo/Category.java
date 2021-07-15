@@ -11,6 +11,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.type.JdbcType;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,6 +27,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class Category{
     @TableId
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     @TableField(exist = false)

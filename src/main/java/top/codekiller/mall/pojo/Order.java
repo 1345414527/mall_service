@@ -7,26 +7,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import com.sun.xml.internal.ws.developer.Serialization;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.ibatis.type.JdbcType;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import top.codekiller.mall.utils.NotNull;
-
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author codekiller
- * @date 2021/7/12 14:13
- * @Description TODO
+ * @date 2021/7/14 20:21
+ * @Description 订单表
  */
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Serialization
-public class Product {
+public class Order {
     @TableId
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
@@ -34,35 +34,21 @@ public class Product {
     @TableField(exist = false)
     private String id_;
 
-    private String name;
+    private String userName;
 
-    @NotNull
-    private Integer price;
 
-    @NotNull
-    private Integer num;
-    private String logo;
+    @NotBlank
+    private String address;
 
-    @TableField(exist = false)
-    private Integer fee;
+    @NotBlank
+    private String mobile;
 
-    @NotNull
-    private Integer hot;
+    private int total;
 
-    @JsonSerialize(using = ToStringSerializer.class)
-    private Long cid;
+    private String note;
 
     @TableField(exist = false)
-    private String cid_;
-
-    @TableField(exist = false)
-    private String cName;
-
-    /**
-     * 数据库中不存在，是用来进行订单的提交，表示商品的数量
-     */
-    @TableField(exist = false)
-    private int count;
+    private List<Product> products;
 
     /**
      * 创建时间
@@ -78,5 +64,4 @@ public class Product {
     @JsonIgnore
     @Version
     private Long version;
-
 }
